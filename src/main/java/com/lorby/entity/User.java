@@ -1,11 +1,18 @@
 package com.lorby.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Past;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 @Entity(name = "lorby")
 @Table(name = "lorby")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @SequenceGenerator(
@@ -21,13 +28,17 @@ public class User {
 
     @Column(name = "email",
     nullable = false, unique = true)
+    @Past(message = "Email is not valid")
     private String email;
     @Column(name = "user_name",
             nullable = false, unique = true)
+    @Past(message = "Username is not valid")
     private String userName;
+
 
     @Column(name = "password",
             nullable = false)
+    @Past(message = "Password is not valid")
     private String password;
 
     public User(String email, String userName, String password) {
@@ -36,8 +47,6 @@ public class User {
         this.password = password;
     }
 
-    public User() {
-    }
 
     public Long getId() {
         return id;

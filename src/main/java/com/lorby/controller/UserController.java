@@ -1,5 +1,6 @@
 package com.lorby.controller;
 
+import com.lorby.payload.ApiResult;
 import com.lorby.payload.UserDTO;
 import com.lorby.payload.UserResDTO;
 import com.lorby.service.IUserService;
@@ -12,7 +13,7 @@ public class UserController implements IUserController {
     private final IUserService userService;
 
     @Override
-    public UserResDTO register(UserDTO userDTO) {
-        return null;
+    public ApiResult<UserResDTO> register(UserDTO userDTO) {
+        return userService.register(userDTO);
     }
 }

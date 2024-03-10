@@ -9,13 +9,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping(IUserController.BASE_PATH_FOR_REGISTRATION)
+@RequestMapping(IUserController.BASE_PATH_FOR_USER_CONT)
 public interface IUserController {
 
-String BASE_PATH_FOR_REGISTRATION = AppConstants.BASE_PATH_FOR_ALL_PR + "/register";
+String BASE_PATH_FOR_USER_CONT = AppConstants.BASE_PATH_FOR_ALL_PR + "/user";
 
-@PostMapping(path = BASE_PATH_FOR_REGISTRATION)
-UserResDTO register(@Valid @RequestBody UserDTO userDTO);
+String BASE_PATH_FOR_USER_REG = "/register";
+
+@PostMapping(path = BASE_PATH_FOR_USER_REG)
+ApiResult<UserResDTO> register(@Valid @RequestBody UserDTO userDTO);
 
 
 }

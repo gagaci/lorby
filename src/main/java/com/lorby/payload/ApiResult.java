@@ -19,4 +19,26 @@ public class ApiResult<E> {
         this.success = true;
         this.data = data;
     }
+    private ApiResult(List<ErrorData> errors) {
+        this.success = false;
+        this.errors = errors;
+    }
+
+    public ApiResult() {
+        this.success = true;
+    }
+
+
+    public static <T> ApiResult<T> successResponse(T data) {
+        return new ApiResult<>(data);
+    }
+
+    public static <T> ApiResult<T> successResponse() {
+        return new ApiResult<>();
+    }
+
+
+    public static ApiResult<ErrorData> failResponse(String msg, Integer errorCode) {
+        return new ApiResult<>(List.of(new ErrorData(errorCode, msg)));
+    }
 }
